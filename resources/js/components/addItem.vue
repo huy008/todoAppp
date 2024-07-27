@@ -1,7 +1,8 @@
 <template>
+
      <div class="addItem">
           <input type="text" v-model="item.name">
-          <font-awesome-icon icon="plus-square" @click="addItem()"/>
+           <button class="btn btn-primary" @click="addItem()">Add</button>
      </div>
 </template>
 <script>
@@ -10,7 +11,7 @@ export default {
           return {
                item:{name:""}
           }
-     }
+     },
      methods:{
           addItem(){
                if(this.item.name==""){
@@ -21,7 +22,7 @@ export default {
                }).then(response=>{
                     if(response.status==201){
                          this.item.name=""
-                           this.$emit("update")
+                           this.$emit("reloadlist")
                     }
                }).catch(error=>{
                     console.log(error)
@@ -32,6 +33,7 @@ export default {
 </script>
 
 <style scoped>
+
 .addItem{
      display:flex;
      justify-content:center;
@@ -39,7 +41,7 @@ export default {
 }
 input{
      background:#e6e6e6;
-     padding:10px;
+     padding:5px;
 }
 #title{
      text-align: center;
@@ -47,5 +49,8 @@ input{
      padding:10px;
      margin-right:10px ;
      width: 100%;
+}
+button{
+     margin-left: 20px;
 }
  </style>
